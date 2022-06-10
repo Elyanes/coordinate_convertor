@@ -1,0 +1,4 @@
+{
+    "python.defaultInterpreterPath": "C:\\Users\\Mateusz\\condaenv\\coordinate_convertor\\python.exe",
+    "python.formatting.provider": "black"
+}
