@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from urllib import response
-from PySide6.QtCore import QSize, Qt
-from PySide6.QtWidgets import QApplication, QFileDialog, QPushButton, QLabel, QVBoxLayout, QWidget, QComboBox
+from PySide6.QtWidgets import QApplication, QFileDialog, QPushButton, QVBoxLayout, QWidget
 import __main__
 import sys
 import convertor
@@ -12,6 +10,8 @@ class MainWindow(QWidget):
 
    def __init__(self):
       super().__init__()
+      self.input_file = ""
+      self.output_folder = ""
       self.window_width, self.window_height = 400, 100
       self.setMinimumSize(self.window_width, self.window_height)
       self.setWindowTitle("Coordinates Convertor")
@@ -27,9 +27,9 @@ class MainWindow(QWidget):
       folder_button.clicked.connect(self.get_output_folder)
       layout.addWidget(folder_button)
 
-      # run_button = QPushButton("Run")
-      # run_button.clicked.connect(self.clicked_run_button)
-      # layout.addWidget(run_button)
+      run_button = QPushButton("Run")
+      run_button.clicked.connect(self.clicked_run_button)
+      layout.addWidget(run_button)
 
 
    def get_input_file(self):
@@ -38,21 +38,19 @@ class MainWindow(QWidget):
          caption = "Select a data file",
          dir = os.getcwd()
          )
-      return response[0]
+      self.input_file = response[0]
 
    def get_output_folder(self):
       response = QFileDialog.getExistingDirectory(
          self,
          caption = "Select an output folder"
          )
-      return response
+      self.output_folder = response
 
-   # def clicked_run_button(self):
-   #    self.input_file_name = os.path.basename(self.input_file).split(".")[0]
-   #    self.output_file = osj(self.output_folder, self.input_file_name + "_output.geo")
-   #    convertor.convertor(self.input_file, self.output_file)
-
-   #    self.button_run.setGeometry(100,100,50,50)
+   def clicked_run_button(self):
+      self.input_file_name = os.path.basename(self.input_file).split(".")[0]
+      self.output_file = osj(self.output_folder, self.input_file_name + "_output.geo")
+      convertor.convertor(self.input_file, self.output_file)
 
 
 def create_window():

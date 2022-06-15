@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-import convertor
 import generate_window
-import os
 
 
 def main():
