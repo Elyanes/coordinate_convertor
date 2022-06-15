@@ -51,8 +51,8 @@ def convertor(input_file, output_file):
                     write_file.write(converted_line + "\n")
                 else:
                     continue
-                line_number = line_number + 1
-        write_file.write("N071 G45\nN072 M02\n")
+            line_number = line_number + 1
+        write_file.write(f"N{line_number} G45\nN{line_number+1} M02\n")
 
         
 
